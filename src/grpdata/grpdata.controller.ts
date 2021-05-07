@@ -1,7 +1,7 @@
 import {Get, Controller } from '@nestjs/common';
 
-import { TagEntity } from './tag.entity';
-import { TagService } from './tag.service';
+import { TagEntity } from './grpdata.entity';
+import { TagService } from './grpdata.service';
 
 import {
   ApiBearerAuth, ApiTags,

@@ -8,7 +8,7 @@ import { User } from './user.decorator';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
 import {
-  ApiBearerAuth, ApiTags
+  ApiBearerAuth, ApiTags, ApiBody
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
@@ -30,6 +30,7 @@ export class UserController {
 
   @UsePipes(new ValidationPipe())
   @Post('users')
+  @ApiBody({type:'CreateUserDto'})
   async create(@Body('user') userData: CreateUserDto) {
     return this.userService.create(userData);
   }
@@ -41,6 +42,7 @@ export class UserController {
 
   @UsePipes(new ValidationPipe())
   @Post('users/login')
+  @ApiBody({type:'LoginUserDto'})
   async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserRO> {
     const _user = await this.userService.findOne(loginUserDto);
 

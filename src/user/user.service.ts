@@ -22,8 +22,9 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  async findOne({email, password}: LoginUserDto): Promise<UserEntity> {
-    const user = await this.userRepository.findOne({email});
+  async findOne({username, password}: LoginUserDto): Promise<UserEntity> {
+    const user = await this.userRepository.findOne(6);
+    console.log('USER >>>>>>', username, password, user)
     if (!user) {
       return null;
     }

@@ -2,7 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, JoinTable, ManyToM
 import { IsEmail } from 'class-validator';
 import * as argon2 from 'argon2';
 
-@Entity('user')
+@Entity('users')
 export class UserEntity {
 
   @PrimaryGeneratedColumn()

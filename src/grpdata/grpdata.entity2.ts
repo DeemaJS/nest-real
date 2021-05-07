@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('tag')
+@Entity('grpdata')
 export class TagEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  tag: string;
+  number: string;
 
 }
