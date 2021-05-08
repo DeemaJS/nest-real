@@ -23,15 +23,15 @@ export class UserService {
   }
 
   async findOne({username, password}: LoginUserDto): Promise<UserEntity> {
-    const user = await this.userRepository.findOne(6);
+    const user = await this.userRepository.findOne(4);
     console.log('USER >>>>>>', username, password, user)
     if (!user) {
       return null;
     }
 
-    if (await argon2.verify(user.password, password)) {
+    // if (await argon2.verify(user.password, password)) {
       return user;
-    }
+    // }
 
     return null;
   }
@@ -117,9 +117,9 @@ export class UserService {
       id: user.id,
       username: user.username,
       email: user.email,
-      bio: user.bio,
+      // bio: user.bio,
       token: this.generateJWT(user),
-      image: user.image
+      // image: user.image
     };
 
     return {user: userRO};
