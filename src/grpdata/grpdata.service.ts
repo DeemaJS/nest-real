@@ -1,17 +1,17 @@
 import { Injectable} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TagEntity } from './grpdata.entity';
+import { CensorEntity } from './grpdata.entity';
 
 @Injectable()
-export class TagService {
+export class CensorService {
   constructor(
-    @InjectRepository(TagEntity)
-    private readonly tagRepository: Repository<TagEntity>
+    @InjectRepository(CensorEntity)
+    private readonly censorRepository: Repository<CensorEntity>
   ) {}
 
-  async findAll(): Promise<TagEntity[]> {
-    return await this.tagRepository.find();
+  async findAll(): Promise<CensorEntity[]> {
+    return await this.censorRepository.find({take: 10});
   }
 
 }

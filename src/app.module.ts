@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { UserModule } from './user/user.module';
-import { TagModule } from './grpdata/grpdata.module'
+import { CensorModule } from './grpdata/grpdata.module'
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
@@ -9,7 +9,7 @@ import { Connection } from 'typeorm';
   imports: [
     TypeOrmModule.forRoot(),
     UserModule,
-    // TagModule,
+    CensorModule,
   ],
   controllers: [
     AppController

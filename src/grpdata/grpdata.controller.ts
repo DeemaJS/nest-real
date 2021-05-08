@@ -1,22 +1,22 @@
 import {Get, Controller } from '@nestjs/common';
 
-import { TagEntity } from './grpdata.entity';
-import { TagService } from './grpdata.service';
+import { CensorEntity } from './grpdata.entity';
+import { CensorService } from './grpdata.service';
 
 import {
   ApiBearerAuth, ApiTags,
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiTags('tags')
-@Controller('tags')
-export class TagController {
+@ApiTags('censors')
+@Controller('censors')
+export class CensorController {
 
-  constructor(private readonly tagService: TagService) {}
+  constructor(private readonly censorService: CensorService) {}
 
   @Get()
-  async findAll(): Promise<TagEntity[]> {
-    return await this.tagService.findAll();
+  async findAll(): Promise<CensorEntity[]> {
+    return await this.censorService.findAll();
   }
 
 }

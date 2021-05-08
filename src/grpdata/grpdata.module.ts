@@ -1,19 +1,19 @@
 import {MiddlewareConsumer, Module, NestModule, RequestMethod} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from '../user/user.module';
-import { TagService } from './grpdata.service';
-// import { TagEntity } from './grpdata.entity';
-import { TagController } from './grpdata.controller';
+import { CensorService } from './grpdata.service';
+import { CensorEntity } from './grpdata.entity';
+import { CensorController } from './grpdata.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([]), UserModule],
-  providers: [TagService],
+  imports: [TypeOrmModule.forFeature([CensorEntity]), UserModule],
+  providers: [CensorService],
   controllers: [
-    TagController
+    CensorController
   ],
   exports: []
 })
-export class TagModule implements NestModule {
+export class CensorModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
   }
 }
