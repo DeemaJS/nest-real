@@ -99,6 +99,11 @@ export class UserService {
     return this.buildUserRO(user);
   }
 
+  async findByName(username: string): Promise<UserRO>{
+    const user = await this.userRepository.findOne({username: username});
+    return this.buildUserRO(user);
+  }
+
   public generateJWT(user) {
     let today = new Date();
     let exp = new Date(today);
@@ -117,7 +122,6 @@ export class UserService {
       id: user.id,
       username: user.username,
       email: user.email,
-      // bio: user.bio,
       token: this.generateJWT(user),
       // image: user.image
     };
