@@ -29,9 +29,9 @@ export class UserService {
       return null;
     }
 
-    // if (await argon2.verify(user.password, password)) {
+    if (await argon2.verify(user.password, password)) {
       return user;
-    // }
+    }
 
     return null;
   }
@@ -99,9 +99,9 @@ export class UserService {
     return this.buildUserRO(user);
   }
 
-  async findByName(username: string): Promise<UserRO>{
+  async findByName(username: string): Promise<UserEntity>{
     const user = await this.userRepository.findOne({username: username});
-    return this.buildUserRO(user);
+    return user;
   }
 
   public generateJWT(user) {

@@ -10,7 +10,7 @@ export class DeviceEntity {
   NumTab: string;
 
   @Column()
-  Addres: Date;
+  Addres: string;
 
   @Column()
   Name: string;

@@ -11,7 +11,7 @@ export class DeviceService {
   ) {}
 
   async findAll(): Promise<DeviceEntity[]> {
-    return await this.DeviceRepository.find({take: 10});
+    return await this.DeviceRepository.find({take: 50});
   }
 
 }
