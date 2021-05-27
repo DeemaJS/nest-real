@@ -1,10 +1,24 @@
 # Use root/example as user/password credentials
-version: '3.1'
+version: '3.3'
 
 services:
+  node:
+    container_name: nodeapp
+    build:
+      context: .
+      dockerfile: Dockerfile.nest
+    ports:
+      - "3000:5000"
+    networks:
+      - nodeapp-network
+    depends_on:
+      - mysql
 
   db:
     image: mysql:5.7
+    container_name: mysql
+    networks:
+      - nodeapp-network
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -17,3 +31,7 @@ services:
     restart: always
     ports:
       - 9000:8080
+
+networks:
+  nodeapp-network:
+    driver: bridge
