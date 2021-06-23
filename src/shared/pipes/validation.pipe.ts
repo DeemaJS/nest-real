@@ -6,7 +6,7 @@ import { HttpException } from '@nestjs/common/exceptions/http.exception';
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value, metadata: ArgumentMetadata) {
-
+    console.log('transform >>>>>>', value, metadata);
     if (!value) {
       throw new BadRequestException('No data submitted');
     }

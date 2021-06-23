@@ -5,11 +5,11 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const appOptions = {cors: true};
   const app = await NestFactory.create(ApplicationModule, appOptions);
-  app.setGlobalPrefix('api');
+  // app.setGlobalPrefix('api');
 
   const options = new DocumentBuilder()
-    .setTitle('NestJS Realworld Example App')
-    .setDescription('The Realworld API description')
+    .setTitle('NestJS Device App')
+    .setDescription('The Device API description')
     .setVersion('1.0')
     .setBasePath('api')
     .addBearerAuth()
@@ -17,6 +17,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/docs', app, document);
 
-  await app.listen(3000);
+  await app.listen(5000);
 }
 bootstrap();

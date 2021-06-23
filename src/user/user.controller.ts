@@ -8,7 +8,7 @@ import { User } from './user.decorator';
 import { ValidationPipe } from '../shared/pipes/validation.pipe';
 
 import {
-  ApiBearerAuth, ApiTags
+  ApiBearerAuth, ApiTags, ApiBody
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
@@ -30,6 +30,7 @@ export class UserController {
 
   @UsePipes(new ValidationPipe())
   @Post('users')
+  @ApiBody({type:'CreateUserDto'})
   async create(@Body('user') userData: CreateUserDto) {
     return this.userService.create(userData);
   }
@@ -41,15 +42,21 @@ export class UserController {
 
   @UsePipes(new ValidationPipe())
   @Post('users/login')
-  async login(@Body('user') loginUserDto: LoginUserDto): Promise<UserRO> {
-    const _user = await this.userService.findOne(loginUserDto);
+  @ApiBody({type:'LoginUserDto'})
+  async login(@Body() loginUserDto: LoginUserDto): Promise<UserRO> {
+    const name = loginUserDto.username;
+
+    console.log('<<<<<<<<<', name, loginUserDto)
+
+    // const _user = await this.userService.findOne(loginUserDto);
+    const _user = await this.userService.findByName(name);
 
     const errors = {User: ' not found'};
     if (!_user) throw new HttpException({errors}, 401);
 
     const token = await this.userService.generateJWT(_user);
-    const {email, username, bio, image} = _user;
-    const user = {email, token, username, bio, image};
+    const {email, username} = _user; // image
+    const user = {email, token, username,};
     return {user}
   }
 }
